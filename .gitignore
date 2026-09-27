@@ -1,0 +1,24 @@
+# Python environments
+.venv/
+venv/
+
+# Python generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment/secrets
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+
+# Evaluation output
+evaluation/results/
+
+# Python package build metadata
+*.egg-info/
