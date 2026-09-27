@@ -1,0 +1,26 @@
+# Project Completion Checklist
+
+- [x] Requirements defined
+- [x] Architecture designed
+- [x] Repository structured
+- [x] Core code implemented (ingestion, retrieval, generation, API)
+- [x] Environment variables configured (.env.example)
+- [x] Database schema (pgvector via langchain-postgres, auto-provisioned)
+- [x] APIs integrated (OpenAI, Anthropic — pluggable)
+- [x] AI integration completed (embeddings + generation)
+- [x] Automation workflow — N/A (this is a direct API, not an n8n workflow project)
+- [x] Error handling implemented (custom exceptions, global handler, retries)
+- [x] Authentication implemented (optional API key)
+- [x] Security reviewed (docs/security.md)
+- [x] Tests written (unit, integration, e2e scaffold)
+- [x] Tests passed (12/12 unit + integration passing locally)
+- [x] Documentation completed (docs/ directory, 12 files)
+- [x] README completed
+- [ ] Screenshots captured — TODO after local run (see docs/screenshots.md)
+- [ ] Demo video recorded — TODO (see docs/demo-script.md)
+- [ ] Live demo deployed — TODO (see docs/deployment.md)
+- [ ] GitHub uploaded — TODO (push this repository to YOUR_GITHUB_URL)
+- [x] Portfolio page content drafted (docs/portfolio-content.md)
+- [x] Resume entry drafted (docs/resume-entry.md)
+- [x] LinkedIn description drafted (docs/linkedin-post.md)
+- [x] Interview preparation completed (docs/interview-prep.md)
