@@ -13,6 +13,7 @@ from pdf_rag.core.logging_config import get_logger
 from pdf_rag.embeddings.embedder import get_embeddings_client
 from pdf_rag.vectorstore.pgvector_store import get_vector_store
 
+
 logger = get_logger(__name__)
 
 
@@ -22,6 +23,8 @@ class RetrievedChunk:
     source_file: str
     page_number: int
     score: float
+    chunk_id: str | None = None
+    chunk_index: int | None = None
 
 
 def retrieve_relevant_chunks(
@@ -40,9 +43,14 @@ def retrieve_relevant_chunks(
     try:
         embeddings_client = get_embeddings_client(settings)
         vector_store = get_vector_store(settings, embeddings_client)
-        results = vector_store.similarity_search_with_relevance_scores(question, k=k)
+        results = vector_store.similarity_search_with_relevance_scores(
+            question,
+            k=k,
+        )
     except Exception as exc:
-        raise RetrievalError(f"Retrieval failed for question: {exc}") from exc
+        raise RetrievalError(
+            f"Retrieval failed for question: {exc}"
+        ) from exc
 
     chunks = [
         RetrievedChunk(
@@ -50,10 +58,16 @@ def retrieve_relevant_chunks(
             source_file=doc.metadata.get("source_file", "unknown"),
             page_number=doc.metadata.get("page_number", -1),
             score=score,
+            chunk_id=doc.metadata.get("chunk_id"),
+            chunk_index=doc.metadata.get("chunk_index"),
         )
         for doc, score in results
         if score >= settings.retrieval_score_threshold
     ]
 
-    logger.info("retrieval_complete", question_length=len(question), chunks_returned=len(chunks))
+    logger.info(
+        "retrieval_complete",
+        question_length=len(question),
+        chunks_returned=len(chunks),
+    )
     return chunks
